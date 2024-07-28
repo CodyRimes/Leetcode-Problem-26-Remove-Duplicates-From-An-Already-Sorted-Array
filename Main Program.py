@@ -1,4 +1,9 @@
 class Solution(object):
+
+    #Test cases go here
+    #Declare an empty array, should
+    #Declare an array of size 1
+    #Declare edge case arrays
     def removeDuplicates(self, OriginalNumberArray):
         """
         :type nums: List[int]
@@ -31,6 +36,26 @@ class Solution(object):
         # the 2nd pointer/skips ahead to where the 2nd pointer is and skips all duplicate values.
         # Thus by this logic no duplicate values should be pushed to the new array of non-duplicate
         # values we are making
+
+        # This would probably be a good example of why we read documentation first. I started out
+        # thinking this problem would be solved but us receiving an array and us returning a 2nd, NEW array
+        # that meets the problem specifications of removing all duplicates in the original array and returning
+        # the NEW array in ascending order with no duplicates. THIS IS NOT THE CASE!!! THIS IS A LEARNING
+        # POINT OF WHY WE READ DOCUMENTATION.
+        # This problem will be solved by modifying the ARRAY IN PLACE. NO NEW, 2ND ARRAY WILL BE CREATED.
+        # However we will still use the same logical process of using two pointers for the meat of solving this problem, however
+        # it will be somewhat different since we will not be using a 2nd fresh array but will instead be using the same array
+        # we were given/passed to the function and modifying it in place.
+        # It is also very important to note that instead of returning back the array we modified in place, we are simply
+        # returning the number/count of unique values left in the array after our function modifies it in place
+
+        #Here is some of the problem definition:
+        #Consider the number of unique elements of an array to be k, to get accepted, you need to do the following things:
+
+        # Change the array, which we will call nums, such that the first k elements of nums contain the unique elements in the order
+        # they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
+
+        # How I plan on solving this problem is using a 2 pointer method.
 
         # Lets first cover the condition that in the event we receive an empty array, there is automatically no duplicates so we can return that array
         if len(OriginalNumberArray) == 0 | 1:
