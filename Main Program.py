@@ -1,30 +1,6 @@
 class Solution(object):
 
-    #Test cases go here
-    #Declare an empty array, should return 0 unique values, as there are no values in this array
-    testEmptyArray = []
-    #Declare an array of size 1, should return 1, as there can only be 1 unique value
-    testSizeOfSizeOneArray = [1]
-    #Declare edge case arrays:
 
-    #Should return 1 as while there is 3 values in the array, they are all the same, thus there is really only 1 unique value
-    testAllDuplicatessSameValueTestArray = [1, 1, 1]
-    #Should return 10 as while there are a total of 20 values in the array, each value has a copy of itself, thus only leaving 10 real unique values
-    testAllDuplicatesMultipleValuesTestArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]
-    #Should return 10 as there are 10 completely unique values in the array with no duplicates
-    testNoDuplicatesTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-    print("Here are the test arrays we will be using for this program")
-    print("First our empty array (this should return 0): ")
-    print(testEmptyArray)
-    print("Then our size of 1 array (this should return 1): ")
-    print(testSizeOfSizeOneArray)
-    print("Next we will be doing an array full of 1's, three to be exact: ")
-    print(testAllDuplicatessSameValueTestArray)
-    print("Next we will be testing an array with one duplicate of each number in the array, the set of numbers being 1 through 10: ")
-    print(testAllDuplicatesMultipleValuesTestArray)
-    print("Then an array with no duplicates in it: ")
-    print(testNoDuplicatesTestArray)
     def removeDuplicates(self, OriginalNumberArray):
         """
         :type nums: List[int]0
@@ -82,13 +58,16 @@ class Solution(object):
         # duplicate elements
         if len(OriginalNumberArray) == 0:
             print("The input array is empty. There can't possibly be any duplicates in this array if there are none")
-            return 1;
+            return 0;
 
         # Covering the condition that in the event we receive size one array, there is automatically only 1 unique value, so return 1
         # duplicate elements
         if len(OriginalNumberArray) == 1:
             print("The input array is of only size 1. There can only be one non-duplicate value in this array")
             return 1;
+
+        #We will need a counter for each time the 2nd pointer encounters a unique, non-duplicate value
+        CountOfUniqueNonduplicateValues = 0
 
         # If the input array is not an empty array or size 1 array we can,
         # Declaring our first pointer to be set to the beginning of the array
@@ -100,7 +79,10 @@ class Solution(object):
         # We will need to check if the starting positions of the two pointers are equal to each other, if they're not equal in value
         # then we know we have found a non-duplicate, and must move our pointer positions in order to start off our while loop(???? CHECK THIS LOGIC)
         if OriginalNumberArray[MyFirstPointerAtIndex] != OriginalNumberArray[MySecondPointerAtIndex]:
-            print("From the starting positions of our pointers we have found a non-duplicate. We will need to overwrite the poisiton of Pointer1 + 1, then move our Pointer1 to that position, and and then advance the 2nd pointer to seek out another non-duplicate")
+            print("From the starting positions of our pointers we have found a non-duplicate. We will need to overwrite the position of Pointer1 + 1, then move our Pointer1 to that position, and and then advance the 2nd pointer to seek out another non-duplicate")
+            #We will need to update our counter here since we've found a non-duplicate, unique value
+            #The below python convention is the same as writing CountOfUniqueNonduplicateValues = CountOfUniqueNonduplicateValues + 1
+            CountOfUniqueNonduplicateValues += 1
             # We need to overwrite the position just ahead of the 1st pointer to the value the 2nd pointer found as a non-duplicate
             OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
             # Then we need to advance the 1st pointer to that Pointer1 + 1 position so we can accurately compare against the 2nd pointer's value so we can find anotehr non-duplicate
@@ -117,15 +99,52 @@ class Solution(object):
                 print("Checking to see if advancing our 2nd pointer will be inbounds. Right now it is. ")
             else:
                 print("Hypothetically advancing the 2nd pointer will put the 2nd pointer out of bounds and create an error. We have reached that point here")
-                return
+                return CountOfUniqueNonduplicateValues
             #Advancing the 2nd pointer until we find a non-duplicate value with our first pointer
             MySecondPointerAtIndex += MySecondPointerAtIndex
 
             if OriginalNumberArray[MyFirstPointerAtIndex] != OriginalNumberArray[MySecondPointerAtIndex]:
                 print ("Our 2nd pointer has found a non-duplicate! We must now set the position of FirstPointer + 1 equal to what the 2nd pointer has found, and move our 1st Pointer to that new position (FirstPointer + 1)")
-                OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
+                # We will need to update our counter here since we've found a non-duplicate, unique value
+                # The below python convention is the same as writing CountOfUniqueNonduplicateValues = CountOfUniqueNonduplicateValues + 1
+                CountOfUniqueNonduplicateValues += 1
+                #The position just ahead of our first pointer needs to be overwritten with the value our 2nd pointer found
+                OriginalNumberArray[MyFirstPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
+                #We then need to advance our first pointer to the position just ahead of it (the position we just overwrote) so we can compare it with the 2nd pointer
                 MyFirstPointerAtIndex = MyFirstPointerAtIndex + 1
                 # Do not need this line twice as it's in the outter loop
                 # MySecondPointerAtIndex += MySecondPointerAtIndex
 
         return CountOfUniqueNonduplicateValues
+
+#Creating a main area for the program to run
+def main():
+    # Test cases go here
+    # Declare an empty array, should return 0 unique values, as there are no values in this array
+    testEmptyArray = []
+    # Declare an array of size 1, should return 1, as there can only be 1 unique value
+    testSizeOfSizeOneArray = [1]
+    # Declare edge case arrays:
+
+    # Should return 1 as while there is 3 values in the array, they are all the same, thus there is really only 1 unique value
+    testAllDuplicatessSameValueTestArray = [1, 1, 1]
+    # Should return 10 as while there are a total of 20 values in the array, each value has a copy of itself, thus only leaving 10 real unique values
+    testAllDuplicatesMultipleValuesTestArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]
+    # Should return 10 as there are 10 completely unique values in the array with no duplicates
+    testNoDuplicatesTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    print("Here are the test arrays we will be using for this program")
+    print("First our empty array (this should return 0): ")
+    print(testEmptyArray)
+    print("Then our size of 1 array (this should return 1): ")
+    print(testSizeOfSizeOneArray)
+    print("Next we will be doing an array full of 1's, three to be exact: ")
+    print(testAllDuplicatessSameValueTestArray)
+    print(
+        "Next we will be testing an array with one duplicate of each number in the array, the set of numbers being 1 through 10: ")
+    print(testAllDuplicatesMultipleValuesTestArray)
+    print("Then an array with no duplicates in it: ")
+    print(testNoDuplicatesTestArray)
+
+    #Create an instance of the solution class
+    OurSolutionClass = Solution()
