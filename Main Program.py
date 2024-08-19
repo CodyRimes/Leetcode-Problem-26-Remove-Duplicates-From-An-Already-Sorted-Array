@@ -13,9 +13,21 @@ class Solution(object):
     testAllDuplicatesMultipleValuesTestArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]
     #Should return 10 as there are 10 completely unique values in the array with no duplicates
     testNoDuplicatesTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    print("Here are the test arrays we will be using for this program")
+    print("First our empty array (this should return 0): ")
+    print(testEmptyArray)
+    print("Then our size of 1 array (this should return 1): ")
+    print(testSizeOfSizeOneArray)
+    print("Next we will be doing an array full of 1's, three to be exact: ")
+    print(testAllDuplicatessSameValueTestArray)
+    print("Next we will be testing an array with one duplicate of each number in the array, the set of numbers being 1 through 10: ")
+    print(testAllDuplicatesMultipleValuesTestArray)
+    print("Then an array with no duplicates in it: ")
+    print(testNoDuplicatesTestArray)
     def removeDuplicates(self, OriginalNumberArray):
         """
-        :type nums: List[int]
+        :type nums: List[int]0
         :rtype: int
 
         Note to self:
