@@ -78,48 +78,54 @@ class Solution(object):
 
         # How I plan on solving this problem is using a 2 pointer method.
 
-        # Lets first cover the condition that in the event we receive an empty array, there is automatically no duplicates so we can return that array
-        if len(OriginalNumberArray) == 0 | 1:
-            print(
-                "The input array is empty or a size of 1 (only one element), returning the same array as there are no duplciates in this array")
-            return OriginalNumberArray
+        # Lets first cover the condition that in the event we receive an empty array, there is automatically no duplicates so we can return that there are zero
+        # duplicate elements
+        if len(OriginalNumberArray) == 0:
+            print("The input array is empty. There can't possibly be any duplicates in this array if there are none")
+            return 1;
 
-        # If the input array is not an empty array,
+        # Covering the condition that in the event we receive size one array, there is automatically only 1 unique value, so return 1
+        # duplicate elements
+        if len(OriginalNumberArray) == 1:
+            print("The input array is of only size 1. There can only be one non-duplicate value in this array")
+            return 1;
+
+        # If the input array is not an empty array or size 1 array we can,
         # Declaring our first pointer to be set to the beginning of the array
         MyFirstPointerAtIndex = 0
 
         # Declaring our second pointer to be set to the index right after our first pointer is set to
         MySecondPointerAtIndex = 1
 
-        # Declaring an empty 2nd array that will contain all unique values/non-duplicate values in ascending order
-        MyArrayOfNonDuplicates = []
-
-        # Since the input array is not empty, we will always have to put the first element in the array into the non-duplicate array
-        # since this is the first numebr we see?
-        MyArrayOfNonDuplicates.append(OriginalNumberArray[MyFirstPointerAtIndex])
-
         # We will need to check if the starting positions of the two pointers are equal to each other, if they're not equal in value
         # then we know we have found a non-duplicate, and must move our pointer positions in order to start off our while loop(???? CHECK THIS LOGIC)
         if OriginalNumberArray[MyFirstPointerAtIndex] != OriginalNumberArray[MySecondPointerAtIndex]:
-            print(
-                "From the starting positions of our pointers we have found a non-duplicate. Adding this value to our non-duplicate array, and advancing the 2nd pointer to seek out another non-duplicate")
-            # Appending the value we found to our non-duplicate array
-            MyArrayOfNonDuplicates.append(OriginalNumberArray[MySecondPointerAtIndex])
-            # Setting our first pointer equal to the position value of the 2nd pointer
-            MyFirstPointerAtIndex = MySecondPointerAtIndex
+            print("From the starting positions of our pointers we have found a non-duplicate. We will need to overwrite the poisiton of Pointer1 + 1, then move our Pointer1 to that position, and and then advance the 2nd pointer to seek out another non-duplicate")
+            # We need to overwrite the position just ahead of the 1st pointer to the value the 2nd pointer found as a non-duplicate
+            OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
+            # Then we need to advance the 1st pointer to that Pointer1 + 1 position so we can accurately compare against the 2nd pointer's value so we can find anotehr non-duplicate
+            MyFirstPointerAtIndex = MyFirstPointerAtIndex + 1
+
         # Now lets compare the values of both values at the respective indexes the pointers are initially pointing at (index[0] and index[1]
         # respectively)
         while OriginalNumberArray[MyFirstPointerAtIndex] == OriginalNumberArray[MySecondPointerAtIndex]:
-            print(
-                "There is a duplicate between where the first pointer is and where the 2nd pointer is, advancing the 2nd pointer to look for a non-duplicate")
+            print("There is a duplicate between where the first pointer is and where the 2nd pointer is, advancing the 2nd pointer to look for a non-duplicate")
             # We must first see if advancing the 2nd pointer will get us to go out of scope of the array, so we need to prevent that
+            if MySecondPointerAtIndex < len(OriginalNumberArray)
+                print("Before we have advanced our 2nd pointer, we are inbounds inside the array")
+            if MySecondPointerAtIndex + 1 < len(OriginalNumberArray)
+                print("Checking to see if advancing our 2nd pointer will be inbounds. Right now it is. ")
+            else:
+                print("Hypothetically advancing the 2nd pointer will put the 2nd pointer out of bounds and create an error. We have reached that point here")
+                return
+            #Advancing the 2nd pointer until we find a non-duplicate value with our first pointer
             MySecondPointerAtIndex += MySecondPointerAtIndex
+
             if OriginalNumberArray[MyFirstPointerAtIndex] != OriginalNumberArray[MySecondPointerAtIndex]:
-                print(
-                    "The 2nd pointer has advanced and found a non-duplicate. We will set the 1st pointer to the index location the 2nd pointer has landed at, add that value to our non-duplicate array, and continue with our process of advancing the 2nd pointer until a non-duplicate is found")
-                MyArrayOfNonDuplicates.append(OriginalNumberArray[MySecondPointerAtIndex])
-                MyFirstPointerAtIndex = MySecondPointerAtIndex
+                print ("Our 2nd pointer has found a non-duplicate! We must now set the position of FirstPointer + 1 equal to what the 2nd pointer has found, and move our 1st Pointer to that new position (FirstPointer + 1)")
+                OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
+                MyFirstPointerAtIndex = MyFirstPointerAtIndex + 1
                 # Do not need this line twice as it's in the outter loop
                 # MySecondPointerAtIndex += MySecondPointerAtIndex
 
-        return MyArrayOfNonDuplicates
+        return CountOfUniqueNonduplicateValues
