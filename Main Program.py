@@ -1,9 +1,18 @@
 class Solution(object):
 
     #Test cases go here
-    #Declare an empty array, should
-    #Declare an array of size 1
-    #Declare edge case arrays
+    #Declare an empty array, should return 0 unique values, as there are no values in this array
+    testEmptyArray = []
+    #Declare an array of size 1, should return 1, as there can only be 1 unique value
+    testSizeOfSizeOneArray = [1]
+    #Declare edge case arrays:
+
+    #Should return 1 as while there is 3 values in the array, they are all the same, thus there is really only 1 unique value
+    testAllDuplicatessSameValueTestArray = [1, 1, 1]
+    #Should return 10 as while there are a total of 20 values in the array, each value has a copy of itself, thus only leaving 10 real unique values
+    testAllDuplicatesMultipleValuesTestArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]
+    #Should return 10 as there are 10 completely unique values in the array with no duplicates
+    testNoDuplicatesTestArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     def removeDuplicates(self, OriginalNumberArray):
         """
         :type nums: List[int]
