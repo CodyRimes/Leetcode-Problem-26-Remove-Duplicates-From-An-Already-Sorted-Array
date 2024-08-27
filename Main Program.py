@@ -1,7 +1,9 @@
 class Solution(object):
-
+    print("An instance of our 'Solution' class has been called. This is coming from inside the solution class definition")
 
     def removeDuplicates(self, OriginalNumberArray):
+        print(".removeDuplicates has successfully been called. This is coming from within the function declaration.")
+
         """
         :type nums: List[int]0
         :rtype: int
@@ -140,11 +142,33 @@ def main():
     print(testSizeOfSizeOneArray)
     print("Next we will be doing an array full of 1's, three to be exact: ")
     print(testAllDuplicatessSameValueTestArray)
-    print(
-        "Next we will be testing an array with one duplicate of each number in the array, the set of numbers being 1 through 10: ")
+    print("Next we will be testing an array with one duplicate of each number in the array, the set of numbers being 1 through 10: ")
     print(testAllDuplicatesMultipleValuesTestArray)
     print("Then an array with no duplicates in it: ")
     print(testNoDuplicatesTestArray)
 
-    #Create an instance of the solution class
-    OurSolutionClass = Solution()
+    #Create an instance of the solution class, should we be passing the arrays here?
+    print("Creating a instance of our solution class right now")
+    OurInstanceOfTheSolutionClass = Solution()
+
+    #Now we must use the function we built in the Solution class to actually give us the solution to the problem, i.e.
+    #the number of unique values our function finds in the array we pass in to the class
+    print("Calling our function that is attached to the solution class several times for each test array we made. This will return the number of unique values that it finds for each array passed in")
+    print("I will print the capture variables accordingly after")
+    captureVariableForOurEmptyArray = OurInstanceOfTheSolutionClass.removeDuplicates(testEmptyArray)
+    captureVariableForSizeOfOneArray = OurInstanceOfTheSolutionClass.removeDuplicates(testSizeOfSizeOneArray)
+    captureVariableForAllDuplicatesSameValueArray = OurInstanceOfTheSolutionClass.removeDuplicates(testAllDuplicatessSameValueTestArray)
+    captureVariableForAllDuplicatesMultipleValuesArray = OurInstanceOfTheSolutionClass.removeDuplicates(testAllDuplicatesMultipleValuesTestArray)
+    captureVariableForNoDuplicatesTestArray = OurInstanceOfTheSolutionClass.removeDuplicates(testNoDuplicatesTestArray)
+
+    print("Now that I have captured all the return values that each function call has produced, here are the results for each test array")
+    print("In our testEmptyArray, we have: ", captureVariableForOurEmptyArray , "unique values")
+    print("In our testSizeOfSizeOneArray, we have: ", captureVariableForSizeOfOneArray , "unique values")
+    print("In our testAllDuplicatessSameValueTestArray, we have: ", captureVariableForAllDuplicatesSameValueArray , "unique values")
+    print("In our testAllDuplicatesMultipleValuesTestArray, we have: ", captureVariableForAllDuplicatesMultipleValuesArray , "unique values")
+    print("In our testNoDuplicatesTestArray, we have: ", captureVariableForNoDuplicatesTestArray , "unique values")
+
+
+
+
+
