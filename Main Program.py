@@ -87,7 +87,7 @@ class Solution(object):
             CountOfUniqueNonduplicateValues += 1
             # We need to overwrite the position just ahead of the 1st pointer to the value the 2nd pointer found as a non-duplicate
             OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
-            # Then we need to advance the 1st pointer to that Pointer1 + 1 position so we can accurately compare against the 2nd pointer's value so we can find anotehr non-duplicate
+            # Then we need to advance the 1st pointer to that Pointer1 + 1 position so we can accurately compare against the 2nd pointer's value so we can find another non-duplicate
             MyFirstPointerAtIndex = MyFirstPointerAtIndex + 1
 
         # Now lets compare the values of both values at the respective indexes the pointers are initially pointing at (index[0] and index[1]
@@ -95,9 +95,10 @@ class Solution(object):
         while OriginalNumberArray[MyFirstPointerAtIndex] == OriginalNumberArray[MySecondPointerAtIndex]:
             print("There is a duplicate between where the first pointer is and where the 2nd pointer is, advancing the 2nd pointer to look for a non-duplicate")
             # We must first see if advancing the 2nd pointer will get us to go out of scope of the array, so we need to prevent that
-            if MySecondPointerAtIndex < len(OriginalNumberArray)
+            # Lets do some conditional statements to see what advancing the 2nd pointer will do
+            if MySecondPointerAtIndex < len(OriginalNumberArray):
                 print("Before we have advanced our 2nd pointer, we are inbounds inside the array")
-            if MySecondPointerAtIndex + 1 < len(OriginalNumberArray)
+            if MySecondPointerAtIndex + 1 < len(OriginalNumberArray):
                 print("Checking to see if advancing our 2nd pointer will be inbounds. Right now it is. ")
             else:
                 print("Hypothetically advancing the 2nd pointer will put the 2nd pointer out of bounds and create an error. We have reached that point here")
@@ -105,10 +106,11 @@ class Solution(object):
             #Advancing the 2nd pointer until we find a non-duplicate value with our first pointer
             MySecondPointerAtIndex += MySecondPointerAtIndex
 
+            #Check to see if we've reached a non-duplicate number in comparision with the 1st pointer's value after advancing the 2nd pointer
             if OriginalNumberArray[MyFirstPointerAtIndex] != OriginalNumberArray[MySecondPointerAtIndex]:
                 print ("Our 2nd pointer has found a non-duplicate! We must now set the position of FirstPointer + 1 equal to what the 2nd pointer has found, and move our 1st Pointer to that new position (FirstPointer + 1)")
                 # We will need to update our counter here since we've found a non-duplicate, unique value
-                # The below python convention is the same as writing CountOfUniqueNonduplicateValues = CountOfUniqueNonduplicateValues + 1
+                # The below python convention is the same as writing CountOfUniqueNonduplicateValues = CountOfUniqueNonduplicateValues + 1 in C++
                 CountOfUniqueNonduplicateValues += 1
                 #The position just ahead of our first pointer needs to be overwritten with the value our 2nd pointer found
                 OriginalNumberArray[MyFirstPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
