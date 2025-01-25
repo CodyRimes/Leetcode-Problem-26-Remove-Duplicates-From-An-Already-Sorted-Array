@@ -171,6 +171,9 @@ def main():
     print("In our testNoDuplicatesTestArray, we have: ", captureVariableForNoDuplicatesTestArray , "unique values")
 
 
+#You may need to refresh yourself on this, but as I understand it in Python any file ran directly on the IDE
+#runs as "main", and if you have a function called main() such as I've done above, simulating C++ functionality/coding style,
+#you will need to put a function call to your main() function when running the file itself, which will automatically/by standard is named "main"
 
-
-
+if __name__ == "__main__":
+    main()
