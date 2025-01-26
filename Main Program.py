@@ -68,8 +68,16 @@ class Solution(object):
             print("The input array is of only size 1. There can only be one non-duplicate value in this array")
             return 1;
 
+
+        # JANUARY 25th 2025, CODY I WANT TO DRAW ATTENTION TO THE FACT THAT THIS LOGIC IS FLAWED. WHILE WE HAVE HANDLED THE CASES FOR A SIZE 0/EMPTY
+        # ARRAY, ex. [], AND A SIZE 1 ARRAY, ex. [1], IN A SIZE 2 ARRAY, WE WILL EITHER HAVE A 1 UNIQUE NON-DUPLICATE VALUE OR TWO, SEE EXAMPLE:
+        # [1,1]; HERE THERE IS 1 UNIQUE, NON-DUPLICATE VALUE, OR THERE COULD BE 2 UNIQUE VALUES IN A SIZE 2 ARRAY, SEE EXAMPLE [1,2]; HERE
+        # THERE ARE TWO UNIQUE, NON-DUPLICATE VALUES, THUS THE LOGIC OF SETTING THE COUNTER FOR UNIQUE NON-DUPLICATE VALUES TO 0 AFTER
+        # HANDLING THE CASES OF SIZE 0/EMPTY ARRAY, example [] AND THE CASE FOR A SIZE 1 ARRAY, example [1], IS WRONG!!!
+
         #We will need a counter for each time the 2nd pointer encounters a unique, non-duplicate value
-        CountOfUniqueNonduplicateValues = 0
+        CountOfUniqueNonduplicateValues = 1
+
 
         # If the input array is not an empty array or size 1 array we can,
         # Declaring our first pointer to be set to the beginning of the array
