@@ -94,7 +94,10 @@ class Solution(object):
             #The below python convention is the same as writing CountOfUniqueNonduplicateValues = CountOfUniqueNonduplicateValues + 1
             CountOfUniqueNonduplicateValues += 1
             # We need to overwrite the position just ahead of the 1st pointer to the value the 2nd pointer found as a non-duplicate
-            OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
+            #JANUARY 25th 2025, FOUND AN ERROR HERE WITH THE INCORRECT LOGIC IN LINE:
+            # OriginalNumberArray[MySecondPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
+            #We should be overwriting the position just ahead of the first pointer, not the 2nd pointer like in the line above. Changing the code to reflect that now
+            OriginalNumberArray[MyFirstPointerAtIndex + 1] = OriginalNumberArray[MySecondPointerAtIndex]
             # Then we need to advance the 1st pointer to that Pointer1 + 1 position so we can accurately compare against the 2nd pointer's value so we can find another non-duplicate
             MyFirstPointerAtIndex = MyFirstPointerAtIndex + 1
 
