@@ -103,8 +103,13 @@ class Solution(object):
             else:
                 print("Hypothetically advancing the 2nd pointer will put the 2nd pointer out of bounds and create an error. We have reached that point here")
                 return CountOfUniqueNonduplicateValues
-            #Advancing the 2nd pointer until we find a non-duplicate value with our first pointer
-            MySecondPointerAtIndex += MySecondPointerAtIndex
+            #Advancing the 2nd pointer one step at a time through the array until we find a non-duplicate value with our first pointer
+            #Note that when debugging this code on January 25th 2025 I found this line as: MySecondPointerAtIndex += MySecondPointerAtIndex
+            #That would be adding the variable value to the variable value itself, thus I was getting a doubling affect that the 2nd pointer was moving at, when it should have been walking through the array 1 step at a time
+            #This is the pythonic code I was going for: MySecondPointerAtIndex += 1
+            #Instead I will not be doing it the pythonic way, but I will be making this code as verbose and as easy to ready as possible (for me),
+            #so I am changing it back to the way I think looks best/most descriptive
+            MySecondPointerAtIndex = MySecondPointerAtIndex + 1
 
             #Check to see if we've reached a non-duplicate number in comparision with the 1st pointer's value after advancing the 2nd pointer
             if OriginalNumberArray[MyFirstPointerAtIndex] != OriginalNumberArray[MySecondPointerAtIndex]:
